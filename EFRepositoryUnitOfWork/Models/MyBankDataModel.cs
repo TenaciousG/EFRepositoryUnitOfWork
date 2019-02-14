@@ -20,5 +20,6 @@ namespace EFRepositoryUnitOfWork.Models
 
         public virtual DbSet<User> MyUsers { get; set; }
         public virtual DbSet<Account> MyAccounts { get; set; }
+        public virtual DbSet<AccountJunction> UserAndAccountJunctions { get; set; }
     }
 }

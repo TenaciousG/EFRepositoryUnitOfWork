@@ -186,8 +186,25 @@
     <Compile Include="Migrations\201902141217061_Added_Accounts.Designer.cs">
       <DependentUpon>201902141217061_Added_Accounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902141234512_Changed_IdTye.cs" />
+    <Compile Include="Migrations\201902141234512_Changed_IdTye.Designer.cs">
+      <DependentUpon>201902141234512_Changed_IdTye.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902141236495_Added_AccountJunct.cs" />
+    <Compile Include="Migrations\201902141236495_Added_AccountJunct.Designer.cs">
+      <DependentUpon>201902141236495_Added_AccountJunct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902141242125_Added_AccountNumber.cs" />
+    <Compile Include="Migrations\201902141242125_Added_AccountNumber.Designer.cs">
+      <DependentUpon>201902141242125_Added_AccountNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902141250177_Made_ReferencedTablesVirtual.cs" />
+    <Compile Include="Migrations\201902141250177_Made_ReferencedTablesVirtual.Designer.cs">
+      <DependentUpon>201902141250177_Made_ReferencedTablesVirtual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountJunction.cs" />
     <Compile Include="Models\MyBankDataModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,6 +301,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902141217061_Added_Accounts.resx">
       <DependentUpon>201902141217061_Added_Accounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902141234512_Changed_IdTye.resx">
+      <DependentUpon>201902141234512_Changed_IdTye.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902141236495_Added_AccountJunct.resx">
+      <DependentUpon>201902141236495_Added_AccountJunct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902141242125_Added_AccountNumber.resx">
+      <DependentUpon>201902141242125_Added_AccountNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902141250177_Made_ReferencedTablesVirtual.resx">
+      <DependentUpon>201902141250177_Made_ReferencedTablesVirtual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

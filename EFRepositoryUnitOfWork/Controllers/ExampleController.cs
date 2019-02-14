@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
@@ -8,7 +6,6 @@ using System.Web.Http;
 using EFRepositoryUnitOfWork.Implementations;
 using EFRepositoryUnitOfWork.Interfaces;
 using EFRepositoryUnitOfWork.Models;
-using Newtonsoft.Json;
 
 namespace EFRepositoryUnitOfWork.Controllers
 {
@@ -19,6 +16,21 @@ namespace EFRepositoryUnitOfWork.Controllers
         public ExampleController()
         {
             this.unitOfWork = new UnitOfWork<MyBankDataModel>();
+        }
+
+        [Route("AccountForUser")]
+        public HttpResponseMessage GetAccountsForUser(string userFirstName)
+        {
+            IRepository<AccountJunction> accountJunctionRepo = this.unitOfWork.GetRepository<AccountJunction>();
+            var accountJunctions = accountJunctionRepo.Get(x => x.User.FirstName == userFirstName);
+            var result = accountJunctions.Select(aj => new
+            {
+                AccountNumber = aj.Account.AccountNumber,
+                AccountType = aj.Account.Type,
+                Balance = aj.Account.Balance
+            }).ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [Route("Accounts")]
