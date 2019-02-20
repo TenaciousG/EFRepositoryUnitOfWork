@@ -174,10 +174,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Implementations\OldRepository.cs" />
     <Compile Include="Implementations\Repository.cs" />
+    <Compile Include="Implementations\OldUnitOfWork.cs" />
     <Compile Include="Implementations\UnitOfWork.cs" />
+    <Compile Include="Implementations\UserRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Migrations\201902141151357_inital migraton.cs" />
     <Compile Include="Migrations\201902141151357_inital migraton.Designer.cs">
       <DependentUpon>201902141151357_inital migraton.cs</DependentUpon>

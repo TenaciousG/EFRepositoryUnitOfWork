@@ -9,75 +9,46 @@ namespace EFRepositoryUnitOfWork.Implementations
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        internal DbContext context;
-        internal DbSet<TEntity> dbSet;
+        protected readonly DbContext Context;
 
         public Repository(DbContext context)
         {
-            this.context = context;
-            this.dbSet = context.Set<TEntity>();
+            this.Context = context;
         }
 
-        public virtual IEnumerable<TEntity> Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
+        public TEntity Get(object id)
         {
-            IQueryable<TEntity> query = this.dbSet;
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
-            }
-        }
-        public virtual TEntity GetByID(params object[] id)
-        {
-            return this.dbSet.Find(id);
-        }
-        public virtual TEntity GetByID(object id)
-        {
-            return this.dbSet.Find(id);
+            return this.Context.Set<TEntity>().Find(id);
         }
 
-        public virtual void Insert(TEntity entity)
+        public IEnumerable<TEntity> GetAll()
         {
-            this.dbSet.Add(entity);
+            return this.Context.Set<TEntity>().ToList();
         }
 
-        public virtual void Delete(object id)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            TEntity entityToDelete = this.dbSet.Find(id);
-            this.Delete(entityToDelete);
+            return this.Context.Set<TEntity>().Where(predicate);
         }
 
-        public virtual void Delete(TEntity entityToDelete)
+        public void Add(TEntity entity)
         {
-            if (this.context.Entry(entityToDelete).State == EntityState.Detached)
-            {
-                this.dbSet.Attach(entityToDelete);
-            }
-            this.dbSet.Remove(entityToDelete);
+            this.Context.Set<TEntity>().Add(entity);
         }
 
-        public virtual void Update(TEntity entityToUpdate)
+        public void AddRange(IEnumerable<TEntity> entities)
         {
-            this.dbSet.Attach(entityToUpdate);
-            this.context.Entry(entityToUpdate).State = EntityState.Modified;
+            this.Context.Set<TEntity>().AddRange(entities);
+        }
+
+        public void Remove(TEntity entityToDelete)
+        {
+            this.Context.Set<TEntity>().Remove(entityToDelete);
+        }
+
+        public void RemoveRange(IEnumerable<TEntity> entitiesToDelete)
+        {
+            this.Context.Set<TEntity>().RemoveRange(entitiesToDelete);
         }
     }
 }
