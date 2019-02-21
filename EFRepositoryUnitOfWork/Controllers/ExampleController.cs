@@ -3,6 +3,8 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
+using Effort;
+using Effort.DataLoaders;
 using EFRepositoryUnitOfWork.Implementations;
 using EFRepositoryUnitOfWork.Interfaces;
 using EFRepositoryUnitOfWork.Models;
@@ -12,10 +14,18 @@ namespace EFRepositoryUnitOfWork.Controllers
     [RoutePrefix("example")]
     public class ExampleController : ApiController
     {
+        private UnitOfWorkFactory unitOfWorkFactory;
+
         //IUnitOfWork unitOfWork;
+        public ExampleController(UnitOfWorkFactory unitOfWorkFactory)
+        {
+            this.UnitOfWorkFactory = unitOfWorkFactory;
+            //this.unitOfWork = new UnitOfWork<MyBankDataModel>();
+        }
+
         public ExampleController()
         {
-            //this.unitOfWork = new UnitOfWork<MyBankDataModel>();
+            
         }
 
         //[Route("AccountForUser")]
@@ -50,13 +60,13 @@ namespace EFRepositoryUnitOfWork.Controllers
         //}
 
         [Route("Users")]
-        public HttpResponseMessage GetUsers()
+        public HttpResponseMessage GetUsersWithNameJohn()
         {
-            using (var unitOfWork = new UnitOfWork(new MyBankDataModel()))
+            using (var unitOfWork = UnitOfWorkFactory.CreateUnitOfWork())
             {
                 var users = unitOfWork.Users;
                 var johnUser = users.GetUsersWithFirstName("John").FirstOrDefault();
-                var result = new
+                var result = new UserDto
                 {
                     FirstName = johnUser.FirstName,
                     LastName = johnUser.LastName,
@@ -65,5 +75,17 @@ namespace EFRepositoryUnitOfWork.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
         }
+
+        public UnitOfWorkFactory UnitOfWorkFactory
+        {
+            get => this.unitOfWorkFactory ?? (this.unitOfWorkFactory = new UnitOfWorkFactory());
+            set => this.unitOfWorkFactory = value;
+        }
+    }
+
+    public class UserDto
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System.Data.Common;
 using System.Data.Entity;
 
 namespace EFRepositoryUnitOfWork.Models
@@ -13,6 +14,17 @@ namespace EFRepositoryUnitOfWork.Models
         public MyBankDataModel()
             : base("name=MyBankDataModel")
         {
+        }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MyBankDataModel"/> class.
+        /// Only for unit tests
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        public MyBankDataModel(DbConnection connection) : base(connection, false)
+        {
+            
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFRepositoryUnitOfWork", "EFRepositoryUnitOfWork\EFRepositoryUnitOfWork.csproj", "{62FBE353-8D98-4575-8EAC-54C39AAFC035}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemTests", "InMemTests\InMemTests.csproj", "{3F366D35-EA05-4FED-B25F-48E3E57DE540}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{62FBE353-8D98-4575-8EAC-54C39AAFC035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62FBE353-8D98-4575-8EAC-54C39AAFC035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62FBE353-8D98-4575-8EAC-54C39AAFC035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F366D35-EA05-4FED-B25F-48E3E57DE540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F366D35-EA05-4FED-B25F-48E3E57DE540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F366D35-EA05-4FED-B25F-48E3E57DE540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F366D35-EA05-4FED-B25F-48E3E57DE540}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
